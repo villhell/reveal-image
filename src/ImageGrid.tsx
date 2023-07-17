@@ -55,7 +55,7 @@ const ImageGrid: React.FC = () => {
               onMouseEnter={() => setTooltip({ i, j })}
               onMouseLeave={() => setTooltip(null)}
               style={{
-                backgroundImage: `url(/image1.jpg)`, // ここに画像のパスを指定します。
+                backgroundImage: `url(https://github.com/villhell/reveal-image/blob/gh-pages/image1.jpg)`,
                 backgroundPosition: `-${j * 100}% -${i * 100}%`,
                 display: 'flex',
                 alignItems: 'center',
