@@ -55,7 +55,7 @@ const ImageGrid: React.FC = () => {
               onMouseEnter={() => setTooltip({ i, j })}
               onMouseLeave={() => setTooltip(null)}
               style={{
-                backgroundImage: `url(https://github.com/villhell/reveal-image/blob/gh-pages/image1.jpg)`,
+                backgroundImage: `url(https://github.com/villhell/reveal-image/blob/gh-pages/image1.jpg?raw=true)`,
                 backgroundPosition: `-${j * 100}% -${i * 100}%`,
                 display: 'flex',
                 alignItems: 'center',
