@@ -1,39 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import './App.css'; // CSSをインポートします。
+import React from 'react';
+import './App.css';
+import { useImageGrid } from './useImageGrid';
 
 const ImageGrid: React.FC = () => {
-  const [opacity, setOpacity] = useState<number[][]>(
-    Array(10).fill(Array(10).fill(0))
-  );
-  const [complete, setComplete] = useState(false);
-  const [tooltip, setTooltip] = useState<{ i: number; j: number } | null>(null);
-
-  useEffect(() => {
-    setComplete(opacity.every((row) => row.every((cell) => cell === 1)));
-  }, [opacity]);
-
-  const revealRandomImage = () => {
-    if (complete) {
-      return; // 全ての画像が表示されていたら関数を抜ける
-    }
-    let revealed = false;
-    while (!revealed) {
-      const i = Math.floor(Math.random() * 10);
-      const j = Math.floor(Math.random() * 10);
-      if (opacity[i][j] === 0) {
-        const newOpacity = opacity.map((row) => [...row]);
-        newOpacity[i][j] = 1;
-        setOpacity(newOpacity);
-        revealed = true;
-      }
-    }
-  };
-
-  const toggleImageVisibility = (i: number, j: number) => {
-    const newOpacity = opacity.map((row) => [...row]);
-    newOpacity[i][j] = 1 - newOpacity[i][j];
-    setOpacity(newOpacity);
-  };
+  const {
+    opacity,
+    complete,
+    tooltip,
+    revealRandomImage,
+    toggleImageVisibility,
+    setTooltip,
+  } = useImageGrid();
 
   return (
     <div>
@@ -62,8 +39,8 @@ const ImageGrid: React.FC = () => {
                 justifyContent: 'center',
                 border: complete ? 'none' : '1px solid lightgray',
                 backgroundSize: '1000%',
-                height: '50px', // 画像の高さを調節します。
-                width: '50px', // 画像の幅を調節します。
+                height: '50px',
+                width: '50px',
                 position: 'relative',
               }}
             >
